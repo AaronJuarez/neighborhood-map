@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Neighborhood Map</title>
+    <script src="js/lib/jQuery.js"></script>
+    <script type="text/javascript" src="js/lib/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+	<nav class="nav">
+		<div class="title"><h1>Recycle Centers Location</h1></div>
+		<ul class="nav__list">
+			<li class="nav__item"><a href="#">News</a></li>
+		    <li class="nav__item"><a href="#">Events</a></li>
+		    <li class="nav__item"><a href="#">Culture</a></li>
+		    <li class="nav__item"><a href="#">Blog</a></li>
+		</ul>
+	</nav>
+	<div class="cont">
+		<header class="row header">
+			<div class="col-md-12">
+				<a id="menu" class="header__menu">
+					<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+			            <path d="M2 6h20v3H2zm0 5h20v3H2zm0 5h20v3H2z"/>
+			        </svg>
+			    </a>
+			</div>
+		</header>
+		<main class="map-area">
+			<div id="map">
+
+			</div>
+		</main>
+	</div>
+	<script type="text/javascript" src="js/views/map-view.js" async></script>
+	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC1EEikoLnM-dAlA5V_q1esMQhi7HUpG0M&callback=app.initMap"
+	async defer></script>
+</body>
+</html>

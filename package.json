@@ -1,0 +1,26 @@
+{
+  "name": "neighborhood-map",
+  "version": "1.0.0",
+  "description": "udacity nanodegree p8",
+  "main": "index.js",
+  "dependencies": {},
+  "devDependencies": {
+    "grunt": "^1.0.1"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AaronJuarez/neighborhood-map.git"
+  },
+  "keywords": [
+    "grunt"
+  ],
+  "author": "aaronjuarez",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AaronJuarez/neighborhood-map/issues"
+  },
+  "homepage": "https://github.com/AaronJuarez/neighborhood-map#readme"
+}
