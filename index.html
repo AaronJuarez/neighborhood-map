@@ -10,12 +10,9 @@
 </head>
 <body>
 	<nav class="nav">
-		<div class="title"><h1>Recycle Centers Location</h1></div>
-		<ul class="nav__list">
-			<li class="nav__item"><a href="#">News</a></li>
-		    <li class="nav__item"><a href="#">Events</a></li>
-		    <li class="nav__item"><a href="#">Culture</a></li>
-		    <li class="nav__item"><a href="#">Blog</a></li>
+		<div class="title"><h1>Mexico Buildings</h1></div>
+		<ul id="places-list" data-bind="foreach: placesList">
+			<li class="place-list-elem" data-bind="text: name"></li>
 		</ul>
 	</nav>
 	<div class="cont">
@@ -35,7 +32,11 @@
 		</main>
 	</div>
 	<script type="text/javascript" src="js/views/map-view.js" async></script>
-	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC1EEikoLnM-dAlA5V_q1esMQhi7HUpG0M&callback=app.initMap"
+	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC1EEikoLnM-dAlA5V_q1esMQhi7HUpG0M&libraries=places&callback=app.initMap"
 	async defer></script>
+	<script src="js/lib/knockout-3.2.0.js"></script>
+	<script type="text/javascript" src="js/collections/places.js" async></script>
+	<script type="text/javascript" src="js/models/places.js" async></script>
+	<script type="text/javascript" src="js/viewmodel/viewmodel.js" async></script>
 </body>
 </html>

@@ -9,6 +9,7 @@ li {
 
 ul {
 	list-style-type: none;
+	padding: 0;
 }
 
 .nav a {
@@ -20,10 +21,20 @@ ul {
     background-color: black;
     width: 350px;
     position: absolute;
-    padding: 0 5px;
+    padding: 0;
     -webkit-transform: translate(-350px, 0);
     transform: translate(-350px, 0);
     transition: transform 0.3s ease;
+}
+
+.place-list-elem {
+	color: #337ab7;
+	padding: 5px 5px 5px 30px;
+	cursor: pointer;
+}
+
+.place-list-elem:hover {
+	background-color: #ffffff;
 }
 
 .map-area {
@@ -44,6 +55,7 @@ ul {
 .header__menu svg {
     width: 32px;
     fill: #337ab7;
+    cursor: pointer;
 }
 
 .row {

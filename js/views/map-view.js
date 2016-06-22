@@ -1,4 +1,4 @@
-/*AIzaSyC1EEikoLnM-dAlA5V_q1esMQhi7HUpG0M*/
+/*map key AIzaSyC1EEikoLnM-dAlA5V_q1esMQhi7HUpG0M*/
 var app = app || {};
 
 (function () {
@@ -10,6 +10,6 @@ var app = app || {};
           center: {lat: 19.4184489, lng: -99.1274314},
           zoom: 12
         });
-      }
+      };
 
 })();

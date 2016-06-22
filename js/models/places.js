@@ -1,25 +1,15 @@
-/*global Backbone */
+
 var app = app || {};
 
 (function () {
 	'use strict';
 
-	app.places = [
-		{
-			name: 'torre axa'
-		},
-		{
-			name: 'Angel de la Independencia'
-		},
-		{
-			name: 'world trade center'
-		},
-		{
-			name: 'torre mayor'
-		},
-		{
-			name: 'Torre BBVA Bancomer'
-		}
-	];
+	app.Place = function(data) {
+
+		this.name = ko.observable(data.name);
+		this.description = ko.observable(data.description);
+		this.displayed = ko.observable(data.displayed);
+
+	};
 
 })();
