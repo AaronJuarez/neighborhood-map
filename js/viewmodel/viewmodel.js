@@ -12,8 +12,17 @@ var app = app || {};
 			self.placesList.push(new app.Place(placeElem));
 		});
 
-		console.log(app.placesArray);
-		console.log(self.placesList());
+		self.placesList().forEach(function(elem) {
+			app.displayedPlaces.push(elem.name);
+		});
+
+		window.addEventListener('load', function() {
+			app.MapView.searchLocations(app.displayedPlaces);
+		});
+
+		this.toggleNav = function() {
+			app.AppView.menuDisplay();
+		}
 
 	};
 

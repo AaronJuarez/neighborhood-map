@@ -36,4 +36,6 @@ var app = app || {};
 			}
 	];
 
+	app.displayedPlaces = [];
+
 })();

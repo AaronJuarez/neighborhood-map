@@ -3,6 +3,11 @@ html, body, .cont {
 	height: 100%;
 }
 
+body {
+	display: flex;
+	flex-flow: row nowrap;
+}
+
 li {
 	list-style: none;
 }
@@ -20,11 +25,16 @@ ul {
     z-index: 10;
     background-color: black;
     width: 350px;
+    height: 100%;
     position: absolute;
     padding: 0;
-    -webkit-transform: translate(-350px, 0);
     transform: translate(-350px, 0);
     transition: transform 0.3s ease;
+}
+
+.nav-open {
+	position: relative;
+	transform: translate(0, 0);
 }
 
 .place-list-elem {
@@ -85,9 +95,9 @@ h1 {
 	    transform: translate(0, 0);
 	}
 
-	body {
-		display: flex;
-	    flex-flow: row nowrap;
+	.nav-close {
+		position: absolute;
+	    transform: translate(-350px, 0);
 	}
 
 	main {

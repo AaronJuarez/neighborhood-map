@@ -9,8 +9,11 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-	<nav class="nav">
+	<nav id="sidebar" class="nav">
 		<div class="title"><h1>Mexico Buildings</h1></div>
+		<div id="filter">
+			<input></input><button>Filter</button>
+		</div>
 		<ul id="places-list" data-bind="foreach: placesList">
 			<li class="place-list-elem" data-bind="text: name"></li>
 		</ul>
@@ -19,7 +22,7 @@
 		<header class="row header">
 			<div class="col-md-12">
 				<a id="menu" class="header__menu">
-					<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+					<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" data-bind="click: toggleNav">
 			            <path d="M2 6h20v3H2zm0 5h20v3H2zm0 5h20v3H2z"/>
 			        </svg>
 			    </a>
@@ -31,12 +34,12 @@
 			</div>
 		</main>
 	</div>
-	<script type="text/javascript" src="js/views/map-view.js" async></script>
-	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC1EEikoLnM-dAlA5V_q1esMQhi7HUpG0M&libraries=places&callback=app.initMap"
-	async defer></script>
 	<script src="js/lib/knockout-3.2.0.js"></script>
-	<script type="text/javascript" src="js/collections/places.js" async></script>
-	<script type="text/javascript" src="js/models/places.js" async></script>
-	<script type="text/javascript" src="js/viewmodel/viewmodel.js" async></script>
+	<script type="text/javascript" src="js/views/app-view.js"></script>
+	<script type="text/javascript" src="js/collections/places.js"></script>
+	<script type="text/javascript" src="js/models/places.js"></script>
+	<script type="text/javascript" src="js/viewmodel/viewmodel.js"></script>
+	<script type="text/javascript" src="js/views/map-view.js"></script>
+	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC1EEikoLnM-dAlA5V_q1esMQhi7HUpG0M&libraries=places&callback=app.MapView.initMap"></script>
 </body>
 </html>

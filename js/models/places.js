@@ -6,8 +6,8 @@ var app = app || {};
 
 	app.Place = function(data) {
 
-		this.name = ko.observable(data.name);
-		this.description = ko.observable(data.description);
+		this.name = data.name;
+		this.description = data.description;
 		this.displayed = ko.observable(data.displayed);
 
 	};
