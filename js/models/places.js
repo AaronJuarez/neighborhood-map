@@ -4,11 +4,14 @@ var app = app || {};
 (function () {
 	'use strict';
 
-	app.Place = function(data) {
+	app.PlaceModel = {
 
-		this.name = data.name;
-		this.description = data.description;
-		this.displayed = ko.observable(data.displayed);
+		Place: function(data) {
+			this.name = data.name;
+			this.description = data.description;
+		},
+
+		filteredPlace: ko.observable('')
 
 	};
 
