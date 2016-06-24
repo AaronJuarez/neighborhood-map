@@ -6,18 +6,18 @@ var app = app || {};
 	app.ViewModel = function() {
 		var self = this;
 
-		app.placesData.forEach(function(placeElem) {
-			app.allPlaces.push(new app.PlaceModel.Place(placeElem));
+		app.placeCollection.placesData.forEach(function(placeElem) {
+			app.placeCollection.allPlaces.push(new app.PlaceModel.Place(placeElem));
 		});
 
-		this.placesList = ko.observableArray(app.allPlaces);
+		this.placesList = ko.observableArray(app.placeCollection.allPlaces);
 
 		this.markPlaces = function(){
-			app.markedPlaces = [];
+			app.placeCollection.markedPlaces = [];
 			self.placesList().forEach(function(elem) {
-				app.markedPlaces.push(elem.name);
+				app.placeCollection.markedPlaces.push(elem.name);
 			});
-			app.MapView.searchLocations(app.markedPlaces);
+			app.MapView.searchLocations(app.placeCollection.markedPlaces);
 		};
 
 		window.addEventListener('load', function() {
@@ -31,21 +31,21 @@ var app = app || {};
 		this.filter = function() {
 			var input = app.PlaceModel.filteredPlace().toLowerCase();
 
-			app.removedPlaces.forEach(function(elem) {
+			app.placeCollection.removedPlaces.forEach(function(elem) {
 				self.placesList.push(elem);
 			});
 
-			app.removedPlaces = [];
+			app.placeCollection.removedPlaces = [];
 
 			self.placesList().forEach(function(place) {
 				var currentPlace = place;
 				var name = currentPlace.name.toLowerCase();
 				if (!name.includes(input)) {
-					app.removedPlaces.push(currentPlace);
+					app.placeCollection.removedPlaces.push(currentPlace);
 				}
 			});
 
-			app.removedPlaces.forEach(function(elem) {
+			app.placeCollection.removedPlaces.forEach(function(elem) {
 				self.placesList.remove(elem);
 			});
 		};

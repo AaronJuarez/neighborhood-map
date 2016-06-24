@@ -4,7 +4,9 @@ var app = app || {};
 (function () {
 	'use strict';
 
-	app.placesData = [
+	app.placeCollection = {
+
+		placesData: [
 			{
 				name: 'Torre Axa Mexico',
 				description: 'The Tower has a height of 132 meters (433 ft) and 30-32 floors, plus 5 floors of parking underground'
@@ -29,12 +31,14 @@ var app = app || {};
 				description: 'Upon its completion in 2015 it became the second tallest building in Mexico City at 235' +
 				 'metres (771 ft) and 50 stories high'
 			}
-	];
+		],
 
-	app.allPlaces = [];
+		allPlaces: [],
 
-	app.markedPlaces = [];
+		markedPlaces: [],
 
-	app.removedPlaces = [];
+		removedPlaces: []
+
+	};
 
 })();

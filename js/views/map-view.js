@@ -6,6 +6,7 @@ var app = app || {};
 
 	app.map;
 	app.service;
+	app.mapBounds;
 
     app.MapView = {
 
@@ -16,14 +17,48 @@ var app = app || {};
 	          center: {lat: 19.4119984, lng: -99.1691486},
 	          zoom: 14
 	        });
+
+	        app.mapBounds = new google.maps.LatLngBounds();
+
+	        window.addEventListener('resize', function(e) {
+			  app.map.fitBounds(app.mapBounds);
+			});
     	},
 
     	createMarker: function(placeData) {
+		    var lat = placeData.geometry.location.lat();
+		    var lon = placeData.geometry.location.lng();
+		    var name = placeData.formatted_address;
+		    var bounds = app.mapBounds;
+
     		var marker = new google.maps.Marker({
 		      map: app.map,
+		      animation: google.maps.Animation.DROP,
 		      position: placeData.geometry.location,
 		      title: name
 		    });
+
+		    marker.addListener('click', toggleBounce);
+
+		    function toggleBounce() {
+			  if (marker.getAnimation() !== null) {
+			    marker.setAnimation(null);
+			  } else {
+			    marker.setAnimation(google.maps.Animation.BOUNCE);
+			  }
+			}
+
+		    var infoWindow = new google.maps.InfoWindow({
+		      content: marker.title
+		    });
+
+		    google.maps.event.addListener(marker, 'click', function() {
+		      infoWindow.open(map, marker);
+		    });
+
+		    bounds.extend(new google.maps.LatLng(lat, lon));
+		    app.map.fitBounds(bounds);
+		    app.map.setCenter(bounds.getCenter());
     	},
 
     	callback: function(results, status) {

@@ -87,6 +87,10 @@ h1 {
 	height: 100%;
 }
 
+input {
+	color: #337ab7;
+}
+
 
 @media screen and (min-width: 800px) {
 

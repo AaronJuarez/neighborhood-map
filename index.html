@@ -12,7 +12,7 @@
 	<nav id="sidebar" class="nav">
 		<div class="title"><h1>Mexico Buildings</h1></div>
 		<div id="filter">
-			<input data-bind="textInput: filtered"></input><button data-bind="click: filter">Filter</button>
+			<input placeholder="Search" data-bind="textInput: filtered"></input><button data-bind="click: filter">Filter</button>
 		</div>
 		<ul id="places-list" data-bind="foreach: placesList">
 			<li class="place-list-elem" data-bind="text: name"></li>
