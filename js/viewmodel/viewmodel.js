@@ -30,16 +30,17 @@ var app = app || {};
 			var input = app.PlaceModel.filteredPlace().toLowerCase();
 
 			app.placeCollection.removedPlaces.forEach(function(elem) {
+				elem.marker.setMap(app.map);
 				self.placesList.push(elem);
 			});
 
 			app.placeCollection.removedPlaces = [];
 
 			self.placesList().forEach(function(place) {
-				var currentPlace = place;
-				var name = currentPlace.name.toLowerCase();
+				var name = place.name.toLowerCase();
 				if (!name.includes(input)) {
-					app.placeCollection.removedPlaces.push(currentPlace);
+					place.marker.setMap(null);
+					app.placeCollection.removedPlaces.push(place);
 				}
 			});
 
