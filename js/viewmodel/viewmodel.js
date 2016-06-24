@@ -12,21 +12,19 @@ var app = app || {};
 
 		this.placesList = ko.observableArray(app.placeCollection.allPlaces);
 
-		this.markPlaces = function(){
-			app.placeCollection.markedPlaces = [];
-			self.placesList().forEach(function(elem) {
-				app.placeCollection.markedPlaces.push(elem.name);
-			});
-			app.MapView.searchLocations(app.placeCollection.markedPlaces);
+		this.initialMarkPlaces = function(){
+			app.MapView.searchLocations(app.placeCollection.allPlaces);
 		};
 
 		window.addEventListener('load', function() {
-			self.markPlaces();
+			self.initialMarkPlaces();
 		});
 
 		this.toggleNav = function() {
 			app.AppView.menuDisplay();
 		};
+
+		this.filtered = app.PlaceModel.filteredPlace;
 
 		this.filter = function() {
 			var input = app.PlaceModel.filteredPlace().toLowerCase();
@@ -50,7 +48,9 @@ var app = app || {};
 			});
 		};
 
-		this.filtered = app.PlaceModel.filteredPlace;
+		this.clickedListElem = function(element) {
+			element.marker.toggleMarkerAction();
+		};
 
 	};
 

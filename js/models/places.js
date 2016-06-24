@@ -9,6 +9,7 @@ var app = app || {};
 		Place: function(data) {
 			this.name = data.name;
 			this.description = data.description;
+			this.marker = {};
 		},
 
 		filteredPlace: ko.observable('')

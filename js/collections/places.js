@@ -35,8 +35,6 @@ var app = app || {};
 
 		allPlaces: [],
 
-		markedPlaces: [],
-
 		removedPlaces: []
 
 	};

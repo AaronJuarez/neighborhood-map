@@ -15,7 +15,7 @@
 			<input placeholder="Search" data-bind="textInput: filtered"></input><button data-bind="click: filter">Filter</button>
 		</div>
 		<ul id="places-list" data-bind="foreach: placesList">
-			<li class="place-list-elem" data-bind="text: name"></li>
+			<li class="place-list-elem" data-bind="text: name, click: $parent.clickedListElem"></li>
 		</ul>
 	</nav>
 	<div class="cont">

@@ -25,49 +25,39 @@ var app = app || {};
 			});
     	},
 
-    	createMarker: function(placeData) {
+    	createMarker: function(placeData, place) {
 		    var lat = placeData.geometry.location.lat();
 		    var lon = placeData.geometry.location.lng();
-		    var name = placeData.formatted_address;
+		    var name = placeData.name;
 		    var bounds = app.mapBounds;
 
-    		var marker = new google.maps.Marker({
+    		place.marker = new google.maps.Marker({
 		      map: app.map,
 		      animation: google.maps.Animation.DROP,
 		      position: placeData.geometry.location,
 		      title: name
 		    });
 
-		    marker.addListener('click', toggleBounce);
-
-		    function toggleBounce() {
-			  if (marker.getAnimation() !== null) {
-			    marker.setAnimation(null);
-			  } else {
-			    marker.setAnimation(google.maps.Animation.BOUNCE);
-			  }
-			}
-
 		    var infoWindow = new google.maps.InfoWindow({
-		      content: marker.title
+		      content: place.marker.title
 		    });
 
-		    google.maps.event.addListener(marker, 'click', function() {
-		      infoWindow.open(map, marker);
-		    });
+		    place.marker.toggleMarkerAction = function() {
+			  if (place.marker.getAnimation() !== null) {
+			    place.marker.setAnimation(null);
+			    infoWindow.close();
+			  } else {
+			    place.marker.setAnimation(google.maps.Animation.BOUNCE);
+			    infoWindow.open(map, place.marker);
+			  }
+			};
+
+			place.marker.addListener('click', place.marker.toggleMarkerAction);
 
 		    bounds.extend(new google.maps.LatLng(lat, lon));
 		    app.map.fitBounds(bounds);
 		    app.map.setCenter(bounds.getCenter());
-    	},
 
-    	callback: function(results, status) {
-			if (status == google.maps.places.PlacesServiceStatus.OK) {
-			    app.MapView.createMarker(results[0]);
-			}else {
-				console.log('something went wrong with request');
-				console.log(status);
-			}
     	},
 
     	searchLocations: function(locations) {
@@ -75,9 +65,16 @@ var app = app || {};
 
     		locations.forEach(function(place) {
     			var request = {
-        			query: place
+        			query: place.name
       			};
-    			app.service.textSearch(request, app.MapView.callback);
+    			app.service.textSearch(request, function(results, status) {
+    				if (status == google.maps.places.PlacesServiceStatus.OK) {
+					    app.MapView.createMarker(results[0], place);
+					}else {
+						console.log('something went wrong with request');
+						console.log(status);
+					}
+    			});
     		});
     	}
 
