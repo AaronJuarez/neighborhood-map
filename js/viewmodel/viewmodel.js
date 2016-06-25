@@ -51,6 +51,12 @@ var app = app || {};
 
 		this.clickedListElem = function(element) {
 			element.marker.toggleMarkerAction();
+			console.log(element.marker);
+			if (element.isActive === false && element.isWikiCharged === false) {
+				app.MapView.getWikipediaArticle(element.name);
+				element.isWikiCharged = true;
+			};
+			element.isActive = !element.isActive;
 		};
 
 	};

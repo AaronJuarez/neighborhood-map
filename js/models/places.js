@@ -10,6 +10,8 @@ var app = app || {};
 			this.name = data.name;
 			this.description = data.description;
 			this.marker = {};
+			this.isActive = false;
+			this.isWikiCharged = false;
 		},
 
 		filteredPlace: ko.observable('')

@@ -39,7 +39,9 @@ var app = app || {};
 		    });
 
 		    var infoWindow = new google.maps.InfoWindow({
-		      content: place.marker.title
+		      content: '<div class="map-info-window"><h3>' + place.marker.title +
+		      			'</h3><img><div class="wikipedia-cont"><ul class="wikipedia-links"></ul></div></div>',
+		      maxWidth: 250
 		    });
 
 		    place.marker.toggleMarkerAction = function() {
@@ -76,6 +78,34 @@ var app = app || {};
 					}
     			});
     		});
+    	},
+
+    	getFlickrImg: function() {
+
+    	},
+
+    	getWikipediaArticle: function(place) {
+
+    		var wikiRequestTimeout = setTimeout(function() {
+    			$('.wikipedia-links').text('Failed to get wikipedia resources');
+    		}, 8000);
+
+		    $.ajax('https://en.wikipedia.org/w/api.php?action=opensearch&search=' + place + '&format=json&callback=wikiCallback', {
+		        dataType: 'jsonp'
+		    }).done(function(data) {
+		    	console.log(data);
+		    	var articles = data[1];
+		    	var webUrls = data[3];
+
+		    	for (var i = 0; i < articles.length; i++) {
+		    		console.log('into for');
+		    		$('.wikipedia-links').append('<li><a href=' + webUrls[i] + ' target="_blank">' + articles[i] + '</a></li>');
+		    	};
+
+		    	clearTimeout(wikiRequestTimeout);
+		    });
+
+		    console.log(place);
     	}
 
 	};
