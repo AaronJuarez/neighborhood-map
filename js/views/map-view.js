@@ -40,7 +40,8 @@ var app = app || {};
 
 		    var infoWindow = new google.maps.InfoWindow({
 		      content: '<div class="map-info-window"><h3>' + place.marker.title +
-		      			'</h3><img><div class="wikipedia-cont"><ul class="wikipedia-links"></ul></div></div>',
+		      			'</h3><button type="button" class="btn btn-primary" data-toggle="modal"' +
+		      			' data-target="#placeModal">Info</button></div>',
 		      maxWidth: 250
 		    });
 
