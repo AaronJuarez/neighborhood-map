@@ -36,20 +36,29 @@
 	</div>
 
 	<!--modal-->
-	<div class="modal fade" id="placeModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+	<div class="modal fade" id="placeModal" tabindex="-1" role="dialog" aria-labelledby="placeModalLabel">
 	  <div class="modal-dialog" role="document">
 	    <div class="modal-content">
 	      <div class="modal-header">
-	        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true" data-bind='click: deleteInfo'>&times;</span></button>
 	        <h4 class="modal-title" id="placeInfoTitle"></h4>
 	      </div>
 	      <div class="modal-body">
+	      	<div id="flickr-img"></div>
+	      	<div id="wiki-info">
+	      		Wikipedia Links
+	      		<ul id="wikipedia-links"></ul>
+	      	</div>
 	      </div>
 	      <div class="modal-footer">
-	        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+	        <button type="button" class="btn btn-default" data-dismiss="modal" data-bind='click: deleteInfo'>Close</button>
 	      </div>
 	    </div>
 	  </div>
+	</div>
+
+	<div id="button-holder">
+		<button id="info-button" type="button" class="btn btn-primary" data-toggle="modal" data-target="#placeModal" data-bind="click: showInfo">Info</button>
 	</div>
 
 	<script src="js/lib/knockout-3.2.0.js"></script>

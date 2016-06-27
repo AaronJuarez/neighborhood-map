@@ -39,23 +39,41 @@ var app = app || {};
 		    });
 
 		    var infoWindow = new google.maps.InfoWindow({
-		      content: '<div class="map-info-window"><h3>' + place.marker.title +
-		      			'</h3><button type="button" class="btn btn-primary" data-toggle="modal"' +
-		      			' data-target="#placeModal">Info</button></div>',
+		      content: '<div id="info-button-div" class="map-info-window"></div>',
 		      maxWidth: 250
 		    });
 
 		    place.marker.toggleMarkerAction = function() {
-			  if (place.marker.getAnimation() !== null) {
+
+		    	app.placeCollection.allPlaces.forEach(function(element) {
+		    		if (element !== place && element.isActive === true) {
+		    			element.marker.toggleMarkerAction();
+		    		};
+		    	});
+
+		    	if (place.isActive === true) {
 			    place.marker.setAnimation(null);
+			    $('#info-button').appendTo('#button-holder');
 			    infoWindow.close();
+			    place.isActive = false;
 			  } else {
 			    place.marker.setAnimation(google.maps.Animation.BOUNCE);
 			    infoWindow.open(map, place.marker);
+
+			    if (place.isMarkerNamed === false) {
+			    	place.isMarkerNamed = true;
+			    	$('#info-button-div').append('<h3>' + place.name + '</h3>');
+			    };
+
+			    $('#info-button').appendTo('#info-button-div');
+			    place.isActive = true;
 			  }
 			};
 
-			place.marker.addListener('click', place.marker.toggleMarkerAction);
+			google.maps.event.addListener(place.marker, 'click', place.marker.toggleMarkerAction);
+			google.maps.event.addListener(infoWindow,'closeclick', place.marker.toggleMarkerAction);
+
+			//place.marker.addListener('click', place.marker.toggleMarkerAction);
 
 		    bounds.extend(new google.maps.LatLng(lat, lon));
 		    app.map.fitBounds(bounds);
@@ -79,34 +97,6 @@ var app = app || {};
 					}
     			});
     		});
-    	},
-
-    	getFlickrImg: function() {
-
-    	},
-
-    	getWikipediaArticle: function(place) {
-
-    		var wikiRequestTimeout = setTimeout(function() {
-    			$('.wikipedia-links').text('Failed to get wikipedia resources');
-    		}, 8000);
-
-		    $.ajax('https://en.wikipedia.org/w/api.php?action=opensearch&search=' + place + '&format=json&callback=wikiCallback', {
-		        dataType: 'jsonp'
-		    }).done(function(data) {
-		    	console.log(data);
-		    	var articles = data[1];
-		    	var webUrls = data[3];
-
-		    	for (var i = 0; i < articles.length; i++) {
-		    		console.log('into for');
-		    		$('.wikipedia-links').append('<li><a href=' + webUrls[i] + ' target="_blank">' + articles[i] + '</a></li>');
-		    	};
-
-		    	clearTimeout(wikiRequestTimeout);
-		    });
-
-		    console.log(place);
     	}
 
 	};

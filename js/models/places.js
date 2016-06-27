@@ -11,7 +11,7 @@ var app = app || {};
 			this.description = data.description;
 			this.marker = {};
 			this.isActive = false;
-			this.isWikiCharged = false;
+			this.isMarkerNamed = false;
 		},
 
 		filteredPlace: ko.observable('')

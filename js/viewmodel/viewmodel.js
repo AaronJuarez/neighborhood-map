@@ -29,6 +29,12 @@ var app = app || {};
 		this.filter = function() {
 			var input = app.PlaceModel.filteredPlace().toLowerCase();
 
+			app.placeCollection.allPlaces.forEach(function(element) {
+		    	if (element.isActive === true) {
+		    		element.marker.toggleMarkerAction();
+		    	};
+		    });
+
 			app.placeCollection.removedPlaces.forEach(function(elem) {
 				elem.marker.setMap(app.map);
 				self.placesList.push(elem);
@@ -51,12 +57,17 @@ var app = app || {};
 
 		this.clickedListElem = function(element) {
 			element.marker.toggleMarkerAction();
-			console.log(element.marker);
-			if (element.isActive === false && element.isWikiCharged === false) {
-				app.MapView.getWikipediaArticle(element.name);
-				element.isWikiCharged = true;
-			};
-			element.isActive = !element.isActive;
+		};
+
+		this.showInfo = function() {
+			var placeName = $('#info-button').prev().text();
+			app.AppView.getFlickrImg(placeName);
+			app.AppView.getWikipediaArticle(placeName);
+		};
+
+		this.deleteInfo = function() {
+			$('#flickr-img').empty();
+			$('#wikipedia-links').empty();
 		};
 
 	};

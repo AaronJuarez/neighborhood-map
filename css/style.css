@@ -97,6 +97,10 @@ input {
 	color: #337ab7;
 }
 
+#button-holder {
+	display: none;
+}
+
 
 @media screen and (min-width: 800px) {
 
