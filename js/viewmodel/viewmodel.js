@@ -61,12 +61,14 @@ var app = app || {};
 
 		this.showInfo = function() {
 			var placeName = $('#info-button').prev().text();
+			$('#placeInfoTitle').text(placeName);
 			app.AppView.getFlickrImg(placeName);
 			app.AppView.getWikipediaArticle(placeName);
 		};
 
 		this.deleteInfo = function() {
-			$('#flickr-img').empty();
+			$('#placeInfoTitle').empty();
+			$('#flickr').empty();
 			$('#wikipedia-links').empty();
 		};
 

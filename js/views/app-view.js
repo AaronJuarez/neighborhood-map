@@ -17,20 +17,26 @@ var app = app || {};
 		},
 
     	getFlickrImg: function(place) {
-
+    		//https://www.flickr.com/services/api/flickr.photos.search.htm
+    		//https://www.flickr.com/services/api/misc.urls.html
+    		console.log(place);
+    		place = place.replace(/ /g, '+');
+    		console.log(place);
     		var flickrUrl = 'https://api.flickr.com/services/rest/?method=' +
-    		'flickr.photos.search&api_key=4d7a58bd0277a20e2d2c17bfab0ff142&' +
-    		'text=' + place + '&min_upload_date=2015-01-01&min_taken_date=2015-' +
-    		'01-01&media=photos&lat=19.411207&lon=-99.1505385&format=json&nojsoncallback=1';
+    		'flickr.photos.search&api_key=4f6d1b92ad1230b34eff886862483510&' +
+    		'user_id=141904481%40N02&text=' + place + '&format=json&nojsoncallback=1';
 
     		$.getJSON(flickrUrl, function(data) {
     			console.log(data);
     			var photo = data.photos.photo[0];
-    			var flickrImg = '<img src="https://farm' + photo.farm + '.staticflickr.com/' +
-    			photo.server + '/' + photo.id + '_' + photo.secret + '_m.jpg">';
+    			var flickrImg = '<img class="flickr-img img-responsive" src="https://farm' + photo.farm + '.staticflickr.com/' +
+    			photo.server + '/' + photo.id + '_' + photo.secret + '.jpg">' +
+    			'<figcaption>Image powered by Flickr</figcaption>';
 
-    			$('#flickr-img').append(flickrImg);
+    			$('#flickr').append(flickrImg);
 
+    		}).fail(function(e) {
+            	$('#flickr').text('Flicker image could not be loaded');
     		});
 
     	},
