@@ -56,6 +56,7 @@ var app = app || {};
 		};
 
 		this.clickedListElem = function(element) {
+			app.AppView.menuDisplay();
 			element.marker.toggleMarkerAction();
 		};
 

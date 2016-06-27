@@ -9,10 +9,8 @@ var app = app || {};
 		menuDisplay: function() {
 			if (window.innerWidth >= 800) {
 				$('#sidebar').toggleClass('nav-close');
-				console.log('nav-close toggled');
 			} else {
 				$('#sidebar').toggleClass('nav-open');
-				console.log('nav-open toggled');
 			}
 		},
 
@@ -27,7 +25,6 @@ var app = app || {};
     		'user_id=141904481%40N02&text=' + place + '&format=json&nojsoncallback=1';
 
     		$.getJSON(flickrUrl, function(data) {
-    			console.log(data);
     			var photo = data.photos.photo[0];
     			var flickrImg = '<img class="flickr-img img-responsive" src="https://farm' + photo.farm + '.staticflickr.com/' +
     			photo.server + '/' + photo.id + '_' + photo.secret + '.jpg">' +
