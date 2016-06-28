@@ -12,6 +12,7 @@ module.exports = function(grunt) {
           'js/dist/viewmodel/viewmodel.min.js': ['js/src/viewmodel/viewmodel.js'],
           'js/dist/views/app-view.min.js': ['js/src/views/app-view.js'],
           'js/dist/views/map-view.min.js': ['js/src/views/map-view.js'],
+          'js/lib/jQuery.min.js': ['js/lib/jQuery.js']
         }
       }
     },
