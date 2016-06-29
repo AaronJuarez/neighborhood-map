@@ -106,6 +106,10 @@ var app = app || {};
 					}
     			});
     		});
+    	},
+
+    	googleError: function() {
+    		alert('Google data not loaded');
     	}
 
 	};

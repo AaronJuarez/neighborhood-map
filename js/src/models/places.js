@@ -13,10 +13,7 @@ var app = app || {};
 			this.marker = {};
 			this.isActive = false;
 			this.isMarkerNamed = false;
-		},
-
-		//Sting to filter
-		filteredPlace: ko.observable('')
+		}
 
 	};
 

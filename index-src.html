@@ -14,9 +14,8 @@
 	<nav id="sidebar" class="nav">
 		<div class="title"><h1>Mexico Buildings</h1></div>
 		<div id="filter">
-			<input placeholder="Search" data-bind="textInput: filtered"></input>
+			<input placeholder="Search" data-bind="textInput: filteredPlace">
 			<div class="filter-buttons">
-				<button type="button" class="btn btn-primary" data-bind="click: filter">Filter</button>
 				<button type="button" class="btn btn-primary" data-bind="click: reset">Reset</button>
 			</div>
 		</div>
@@ -74,6 +73,6 @@
 	<script type="text/javascript" src="js/dist/models/places.min.js"></script>
 	<script type="text/javascript" src="js/dist/viewmodel/viewmodel.min.js"></script>
 	<script type="text/javascript" src="js/dist/views/map-view.min.js"></script>
-	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC1EEikoLnM-dAlA5V_q1esMQhi7HUpG0M&libraries=places&callback=app.MapView.initMap" async></script>
+	<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC1EEikoLnM-dAlA5V_q1esMQhi7HUpG0M&libraries=places&callback=app.MapView.initMap" onerror="app.MapView.googleError()"></script>
 </body>
 </html>
