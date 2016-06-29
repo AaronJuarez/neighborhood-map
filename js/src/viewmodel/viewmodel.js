@@ -4,8 +4,11 @@ var app = app || {};
 (function () {
 	'use strict';
 
+	app.thisViewModel;
+
 	app.ViewModel = function() {
 		var self = this;
+		app.thisViewModel = this;
 
 		//build a place object for each place based on collections data
 		app.placeCollection.placesData.forEach(function(placeElem) {
@@ -14,6 +17,11 @@ var app = app || {};
 
 		//String to filter
 		this.filteredPlace = ko.observable('');
+		this.activePlace = ko.observable('');
+
+		this.setActivePlace = function(place) {
+			self.activePlace(place);
+		};
 
 		//make an observable array to handle list filter display
 		//this.placesList = ko.observableArray(app.placeCollection.allPlaces);
@@ -93,28 +101,6 @@ var app = app || {};
 
 		}, this);
 
-/*
-		this.filter = function() {
-			var input = self.filteredPlace().toLowerCase();
-
-			this.reset();
-
-			self.placesList().forEach(function(place) {
-				var name = place.name.toLowerCase();
-				if (!name.includes(input)) {
-					//removes marker from the map
-					place.marker.setMap(null);
-					app.placeCollection.removedPlaces.push(place);
-				}
-			});
-
-			//remove not wanted elements from the placesList observable array
-			app.placeCollection.removedPlaces.forEach(function(elem) {
-				self.placesList.remove(elem);
-			});
-		};
-*/
-
 		//funtion called when a list element or a marker is clicked
 		this.clickedListElem = function(element) {
 			app.AppView.hideSidebar();
@@ -123,8 +109,8 @@ var app = app || {};
 
 		//function to show place info on modal, when marker button is clicked
 		this.showInfo = function() {
-			var placeName = $('#info-button').prev().prev().text();
-			$('#placeInfoTitle').text(placeName);
+			var placeName = self.activePlace();
+			console.log(placeName);
 			app.AppView.getFlickrImg(placeName);
 			app.AppView.getWikipediaArticle(placeName);
 		};

@@ -59,6 +59,8 @@ var app = app || {};
 				    $('#info-button').appendTo('#button-holder');
 				    infoWindow.close();
 				    place.isActive = false;
+				    app.thisViewModel.setActivePlace('');
+
 			  	} else {
 				    place.marker.setAnimation(google.maps.Animation.BOUNCE);
 				    infoWindow.open(map, place.marker);
@@ -71,6 +73,7 @@ var app = app || {};
 
 				    $('#info-button').appendTo('#info-button-div');
 				    place.isActive = true;
+				    app.thisViewModel.setActivePlace(place.name);
 				}
 			};
 
