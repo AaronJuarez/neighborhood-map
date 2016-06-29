@@ -48,11 +48,11 @@
 					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true" data-bind='click: deleteInfo'>&times;</span></button>
 					<h4 class="modal-title" id="placeInfoTitle" data-bind="text: activePlace"></h4>
 				</div>
-				<div class="modal-body">
-					<figure id="flickr"></figure>
+				<div class="modal-body" data-bind="with: app.AppView">
+					<figure id="flickr" data-bind="html: flickrData"></figure>
 					<div id="wiki-info">
 						<h3>Wikipedia Links</h3>
-						<ul id="wikipedia-links"></ul>
+						<ul id="wikipedia-links" data-bind="html: wikipediaData"></ul>
 					</div>
 				</div>
 				<div class="modal-footer">

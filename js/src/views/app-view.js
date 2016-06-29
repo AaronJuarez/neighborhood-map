@@ -5,6 +5,7 @@ var app = app || {};
 	'use strict';
 
 	app.AppView = {
+
 		//function to display menu side bar
 		menuDisplay: function() {
 			if (window.innerWidth >= 800) {
@@ -22,6 +23,10 @@ var app = app || {};
 			}
 		},
 
+		flickrData: ko.observable(''),
+
+		wikipediaData: ko.observable(''),
+
 		//function to get flickr image
     	getFlickrImg: function(place) {
     		//https://www.flickr.com/services/api/flickr.photos.search.htm
@@ -36,7 +41,7 @@ var app = app || {};
     		$.getJSON(flickrUrl, function(data) {
     			console.log(data);
     			if (data.stat === 'fail') {
-    				$('#flickr').text('Flicker image could not be loaded');
+    				app.AppView.flickrData('Flicker image could not be loaded');
     				return;
     			}
 
@@ -46,11 +51,11 @@ var app = app || {};
     			photo.server + '/' + photo.id + '_' + photo.secret + '.jpg">' +
     			'<figcaption>Image powered by Flickr</figcaption>';
 
-    			$('#flickr').append(flickrImg);
+    			app.AppView.flickrData(flickrImg);
 
 
     		}).fail(function(e) {
-            	$('#flickr').text('Flicker image could not be loaded');
+            	app.AppView.flickrData('Flicker image could not be loaded');
     		});
 
     	},
@@ -59,7 +64,7 @@ var app = app || {};
     	getWikipediaArticle: function(place) {
 
     		var wikiRequestTimeout = setTimeout(function() {
-    			$('#wikipedia-links').text('Failed to get wikipedia resources');
+    			app.AppView.wikipediaData('Failed to get wikipedia resources');
     		}, 8000);
 
 		    $.ajax('https://en.wikipedia.org/w/api.php?action=opensearch&search=' +
@@ -68,12 +73,13 @@ var app = app || {};
 		    }).done(function(data) {
 		    	var articles = data[1];
 		    	var webUrls = data[3];
+		    	var links = '';
 
 		    	for (var i = 0; i < articles.length; i++) {
-		    		$('#wikipedia-links').append('<li><a href=' + webUrls[i] +
-		    			' target="_blank">' + articles[i] + '</a></li>');
+		    		links = links + '<li><a href=' + webUrls[i] +
+		    			' target="_blank">' + articles[i] + '</a></li>';
 		    	}
-
+		    	app.AppView.wikipediaData(links);
 		    	clearTimeout(wikiRequestTimeout);
 		    });
 

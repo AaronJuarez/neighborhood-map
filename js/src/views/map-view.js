@@ -10,7 +10,6 @@ var app = app || {};
 
     app.MapView = {
 
-    	self: this,
     	//callback function for the google maps api request
     	initMap: function() {
 	        app.map = new google.maps.Map(document.getElementById('map'), {
