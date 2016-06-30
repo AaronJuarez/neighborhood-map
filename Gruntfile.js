@@ -23,7 +23,7 @@ module.exports = function(grunt) {
           collapseWhitespace: true
         },
         files: {                                   // Dictionary of files
-          'dist/index.html': 'src/index.html'         // 'destination': 'source'
+          'index.html': 'src/index.html'         // 'destination': 'source'
         }
       }
     },
@@ -66,6 +66,7 @@ module.exports = function(grunt) {
   });
 
   grunt.registerTask('default', ['uglify', 'cssmin', 'htmlmin']);
+  grunt.registerTask('html', ['htmlmin']);
   grunt.registerTask('speed', ['pagespeed']);
 
 };
