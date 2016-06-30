@@ -7,12 +7,11 @@ module.exports = function(grunt) {
     uglify: {
       js: {
         files: {
-          'js/dist/collections/places.min.js': ['js/src/collections/places.js'],
-          'js/dist/models/places.min.js': ['js/src/models/places.js'],
-          'js/dist/viewmodel/viewmodel.min.js': ['js/src/viewmodel/viewmodel.js'],
-          'js/dist/views/app-view.min.js': ['js/src/views/app-view.js'],
-          'js/dist/views/map-view.min.js': ['js/src/views/map-view.js'],
-          'js/lib/jQuery.min.js': ['js/lib/jQuery.js']
+          'dist/js/collections/places.js': ['src/js/collections/places.js'],
+          'dist/js/models/places.js': ['src/js/models/places.js'],
+          'dist/js/viewmodel/viewmodel.js': ['src/js/viewmodel/viewmodel.js'],
+          'dist/js/views/app-view.js': ['src/js/views/app-view.js'],
+          'dist/js/views/map-view.js': ['src/js/views/map-view.js']
         }
       }
     },
@@ -24,7 +23,7 @@ module.exports = function(grunt) {
           collapseWhitespace: true
         },
         files: {                                   // Dictionary of files
-          'index.html': 'index-src.html'         // 'destination': 'source'
+          'dist/index.html': 'src/index.html'         // 'destination': 'source'
         }
       }
     },
@@ -33,10 +32,10 @@ module.exports = function(grunt) {
       css: {
         files: [{
           expand: true,
-          cwd: 'css/src',
+          cwd: 'src/css',
           src: ['*.css', '!*.min.css'],
-          dest: 'css/dist',
-          ext: '.min.css'
+          dest: 'dist/css',
+          ext: '.css'
         }]
       }
     },

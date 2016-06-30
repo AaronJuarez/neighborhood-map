@@ -11,11 +11,6 @@
 [Installing Grunt](http://gruntjs.com/getting-started)
 
 You will also need to install the following plugings:
-- [grunt-responsive-images](https://github.com/andismith/grunt-responsive-images)
-
-```
-npm install grunt-responsive-images --save-dev
-```
 
 - [grunt-contrib-uglify](https://github.com/gruntjs/grunt-contrib-uglify)
 
@@ -53,7 +48,6 @@ npm install --save-dev load-grunt-tasks
 require('load-grunt-tasks')(grunt);
 ```
 
-You also need to install either [GraphicsMagick](https://sourceforge.net/projects/graphicsmagick/files/graphicsmagick/) or [Imagemagick](http://www.imagemagick.org/script/binary-releases.php) CLI tools.
 
 ### Flickr & Wikipedia
 ---------------------------------------
